@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>南姫小６年１組学習ログ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="editor-panel" aria-labelledby="app-title">
+        <div class="brand-row">
+          <div>
+            <p class="eyebrow">MY LEARNING LOG</p>
+            <h1 id="app-title">南姫小６年１組学習ログ</h1>
+          </div>
+          <div class="save-state" id="save-state" aria-live="polite">未保存</div>
+        </div>
+
+        <form id="study-form" class="study-form">
+          <div class="field-grid">
+            <div>
+              <label class="field-label" for="entry-date">学習日</label>
+              <input id="entry-date" name="date" type="date" required />
+            </div>
+            <div>
+              <label class="field-label" for="entry-subject">科目</label>
+              <select id="entry-subject" name="subject" required>
+                <option value="">選択してください</option>
+                <option value="国語">国語</option>
+                <option value="算数">算数</option>
+                <option value="社会">社会</option>
+                <option value="理科">理科</option>
+                <option value="音楽">音楽</option>
+                <option value="体育">体育</option>
+                <option value="図工">図工</option>
+                <option value="道徳">道徳</option>
+                <option value="英語">英語</option>
+                <option value="総合的な学習">総合的な学習</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="before-class-notice">授業のはじめに入力しましょう</div>
+          <label class="field-label" for="entry-task">本時の課題</label>
+          <input id="entry-task" name="task" type="text" maxlength="120" placeholder="例：分数のたし算の仕方を考える" required />
+
+          <label class="field-label" for="entry-goal">課題に対する自分の目指す姿</label>
+          <textarea id="entry-goal" name="goal" rows="2" maxlength="200" placeholder="例：自分の考えを説明できるようにする"></textarea>
+
+          <div class="field-grid">
+            <div>
+              <label class="field-label" for="entry-understanding">目標とする姿</label>
+              <select id="entry-understanding" name="understanding" required>
+                <option value="">選択してください</option>
+                <option value="5">よく理解したい</option>
+                <option value="4">だいたい理解したい</option>
+                <option value="3">少しでも理解したい</option>
+                <option value="1">参加するだけ</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="before-class-notice">授業の終わりに入力しましょう</div>
+          <div class="field-grid learning-grid">
+            <div>
+              <label class="field-label" for="entry-learning-method">一人で</label>
+              <select id="entry-learning-method" name="learningMethod" required>
+                <option value="">選択してください</option>
+                <option value="やった">やった</option>
+                <option value="やらなかった">やらなかった</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="entry-solo-evaluation">評価</label>
+              <select id="entry-solo-evaluation" name="soloEvaluation" required>
+                <option value="">選択してください</option>
+                <option value="5">よく理解できた</option>
+                <option value="4">だいたい理解できた</option>
+                <option value="3">ふつう</option>
+                <option value="2">少し難しかった</option>
+                <option value="1">まだ難しい</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="entry-peer-learning">仲間と</label>
+              <select id="entry-peer-learning" name="peerLearning" required>
+                <option value="">選択してください</option>
+                <option value="やった">やった</option>
+                <option value="やらなかった">やらなかった</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="entry-peer-evaluation">評価</label>
+              <select id="entry-peer-evaluation" name="peerEvaluation" required>
+                <option value="">選択してください</option>
+                <option value="5">よく理解できた</option>
+                <option value="4">だいたい理解できた</option>
+                <option value="3">ふつう</option>
+                <option value="2">少し難しかった</option>
+                <option value="1">まだ難しい</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="field-label" for="entry-reflection">本時の振り返り</label>
+          <textarea id="entry-reflection" name="reflection" rows="3" maxlength="240" placeholder="本時の学習を振り返って書いてみよう"></textarea>
+
+          <label class="field-label" for="entry-content">学び方に対する振り返り</label>
+          <textarea id="entry-content" name="content" rows="3" maxlength="500" placeholder="学び方について気づいたことや工夫したことを書いてみよう"></textarea>
+          <div class="note-meta">
+            <span id="editing-label">今日の学習記録を書いています</span>
+            <span><span id="char-count">0</span>/500</span>
+          </div>
+
+          <div class="action-row">
+            <button class="primary-button" type="submit">南姫小６年１組学習ログを保存</button>
+            <button class="ghost-button" type="button" id="clear-button">入力をクリア</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="history-panel" aria-labelledby="history-title">
+        <div class="history-header">
+          <div>
+            <p class="eyebrow">MY PROGRESS</p>
+            <h2 id="history-title">学習記録</h2>
+          </div>
+          <div class="stats-strip" aria-label="学習記録の件数">
+            <strong id="entry-count">0</strong>
+            <span>records</span>
+          </div>
+        </div>
+
+        <p class="progress-label evaluation-header-title" id="progress-title">本時の評価の変化</p>
+        <section class="progress-card" aria-labelledby="progress-title">
+          <label class="chart-subject-filter" for="evaluation-subject-filter">
+            <span>科目</span>
+            <select id="evaluation-subject-filter">
+              <option value="all">すべての科目</option>
+            </select>
+          </label>
+          <label class="chart-period-filter" for="evaluation-period-filter">
+            <span>集計する期間</span>
+            <select id="evaluation-period-filter">
+              <option value="all">すべて</option>
+              <option value="this-week">今週</option>
+              <option value="last-week">先週</option>
+              <option value="this-month">今月</option>
+              <option value="last-month">先月</option>
+            </select>
+          </label>
+          <div class="progress-stats">
+            <span>本時の評価の平均 <strong id="average-evaluation">-</strong>/5</span>
+          </div>
+          <div class="evaluation-chart" id="evaluation-chart" aria-label="本時の評価の変化"></div>
+        </section>
+
+        <div class="summary-row" id="summary-row" aria-label="学び方の集計"></div>
+        <div class="list-tools">
+          <label class="subject-list-filter" for="subject-filter">
+            <span>科目</span>
+            <select id="subject-filter" aria-label="科目で絞り込み">
+              <option value="all">すべての科目</option>
+            </select>
+          </label>
+          <label class="period-filter" for="period-filter">
+            <span>集計する期間</span>
+            <select id="period-filter">
+              <option value="all">すべて</option>
+              <option value="this-week">今週</option>
+              <option value="last-week">先週</option>
+              <option value="this-month">今月</option>
+              <option value="last-month">先月</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          <strong>まだ学習記録がありません</strong>
+          <span>学んだことを保存すると、ここに表示されます。</span>
+        </div>
+        <ul id="entry-list" class="entry-list" aria-label="保存した学習記録一覧"></ul>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
